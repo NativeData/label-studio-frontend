@@ -169,7 +169,7 @@ const RegionsMixin = types
 
     afterUnselectRegion() {},
 
-    onClickRegion() {
+    onClickRegion(multi) {
       const completion = self.completion;
       if (!completion.editable) return;
 
@@ -177,11 +177,20 @@ const RegionsMixin = types
         completion.addRelation(self);
         completion.stopRelationMode();
         completion.regionStore.unselectAll();
+      } else if (multi) {
+        completion.startMultiSelectMode();
+        const isMultiSelected = completion.multiSelectionStore.inside(self.id);
+        if (isMultiSelected) {
+          completion.removeMultiSelection(self);
+        } else {
+          completion.addMultiSelection(self);
+        }
       } else {
+        //TODO should wipe out any multiselects here
+        completion.stopMultiSelectMode();
         const wasNotSelected = !self.selected;
-        completion.unselectAll();
         if (wasNotSelected) {
-          completion.selectArea(self);
+          completion.selectArea(self, multi);
         }
       }
     },

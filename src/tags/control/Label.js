@@ -160,7 +160,17 @@ const Model = types
         }
       }
 
-      region && sameObject && region.setValue(self.parent);
+      if (self.completion.multiSelectMode) {
+        self.completion.multiSelectionStore.regions.forEach(region_id => {
+          self.completion.regionStore.regions.forEach(region => {
+            if (region.id === region_id) {
+              region.setValue(self.parent);
+            }
+          });
+        });
+      } else {
+        region && sameObject && region.setValue(self.parent);
+      }
     },
 
     setVisible(val) {

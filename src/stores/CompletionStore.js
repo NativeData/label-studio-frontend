@@ -18,6 +18,7 @@ import { errorBuilder } from "../core/DataValidator/ConfigValidator";
 import Area from "../regions/Area";
 import throttle from "lodash.throttle";
 import { ViewModel } from "../tags/visual";
+import MultiSelectionStore from "./MultiSelectionStore";
 
 const Completion = types
   .model("Completion", {
@@ -74,6 +75,11 @@ const Completion = types
     }),
 
     highlightedNode: types.maybeNull(types.safeReference(AllRegionsType)),
+
+    multiSelectMode: types.optional(types.boolean, false),
+    multiSelectionStore: types.optional(MultiSelectionStore, {
+      regions: [],
+    }),
   })
   .preProcessSnapshot(sn => {
     sn.draft = Boolean(sn.draft);
@@ -152,10 +158,13 @@ const Completion = types
       // moved to selectArea and others
     },
 
-    selectArea(area) {
+    selectArea(area, multi) {
       if (self.highlightedNode === area) return;
       // if (current) current.setSelected(false);
-      self.unselectAll();
+      if (!multi) {
+        //TODO: Probably should do more here
+        self.unselectAll();
+      }
       self.highlightedNode = area;
       // area.setSelected(true);
       // @todo some backward compatibility, should be rewritten to state handling
@@ -217,6 +226,14 @@ const Completion = types
       self.regionStore.unhighlightAll();
     },
 
+    startMultiSelectMode() {
+      self.multiSelectMode = true;
+    },
+
+    stopMultiSelectMode() {
+      self.multiSelectMode = false;
+    },
+
     deleteAllRegions({ deleteReadOnly = false } = {}) {
       let { regions } = self.regionStore;
 
@@ -254,6 +271,12 @@ const Completion = types
 
     addRelation(reg) {
       self.relationStore.addRelation(self._relationObj, reg);
+    },
+    addMultiSelection(reg) {
+      self.multiSelectionStore.addRegion(reg.id);
+    },
+    removeMultiSelection(reg) {
+      self.multiSelectionStore.removeRegion(reg.id);
     },
 
     addNormalization(normalization) {

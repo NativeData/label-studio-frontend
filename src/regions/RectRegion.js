@@ -307,9 +307,8 @@ const HtxRectangleView = ({ store, item }) => {
           if (store.completionStore.selected.relationMode) {
             stage.container().style.cursor = Constants.DEFAULT_CURSOR;
           }
-
           item.setHighlight(false);
-          item.onClickRegion();
+          item.onClickRegion(e.evt.shiftKey);
         }}
         draggable={item.editable}
       />
