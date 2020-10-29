@@ -178,10 +178,13 @@ const RegionsMixin = types
         completion.stopRelationMode();
         completion.regionStore.unselectAll();
       } else if (multi) {
-        if (completion.highlightedNode) {
-          completion.regionStore.unselectAll();
-        }
         completion.startMultiSelectMode();
+        if (completion.highlightedNode) {
+          const previousSelectedNode = completion.highlightedNode;
+          completion.regionStore.unselectAll();
+          completion.addMultiSelection(previousSelectedNode);
+          previousSelectedNode.setHighlight(true);
+        }
         const isMultiSelected = completion.multiSelectionStore.inside(self.id);
         if (isMultiSelected) {
           completion.removeMultiSelection(self);
