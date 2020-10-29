@@ -92,6 +92,9 @@ export const AreaMixin = types
           },
         });
       }
+      self.completion.multiSelectionStore.removeAllRegions();
+      self.completion.regionStore.unhighlightAll();
+      self.completion.stopMultiSelectMode();
       self.updateAppearenceFromState && self.updateAppearenceFromState();
     },
   }));

@@ -178,6 +178,9 @@ const RegionsMixin = types
         completion.stopRelationMode();
         completion.regionStore.unselectAll();
       } else if (multi) {
+        if (completion.highlightedNode) {
+          completion.regionStore.unselectAll();
+        }
         completion.startMultiSelectMode();
         const isMultiSelected = completion.multiSelectionStore.inside(self.id);
         if (isMultiSelected) {
@@ -186,7 +189,8 @@ const RegionsMixin = types
           completion.addMultiSelection(self);
         }
       } else {
-        //TODO should wipe out any multiselects here
+        completion.multiSelectionStore.removeAllRegions();
+        completion.regionStore.unhighlightAll();
         completion.stopMultiSelectMode();
         const wasNotSelected = !self.selected;
         if (wasNotSelected) {

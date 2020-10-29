@@ -27,7 +27,6 @@ const MultiSelectionStore = types
       self._regions = self._regions.filter(some_region => some_region !== region_id);
     },
     removeAllRegions() {
-      self._regions.map(item => console.log(item));
       self._regions = [];
     },
   }));
