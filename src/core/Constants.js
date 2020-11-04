@@ -2,7 +2,7 @@ export const defaultStyle = {
   fillcolor: "orange",
   fillopacity: 0.6,
   strokecolor: "orange",
-  strokewidth: 5,
+  strokewidth: 2,
   opacity: 0.6,
 };
 
@@ -10,6 +10,7 @@ export default {
   FILL_COLOR: "",
   STROKE_COLOR: "",
   STROKE_WIDTH: 1,
+  DASHED: null,
 
   // labels
   LABEL_BACKGROUND: "#36B37E",
@@ -21,9 +22,10 @@ export default {
   SHOW_LABEL_BACKGROUND: "black",
 
   // when region gets highlighted styling
-  HIGHLIGHTED_STROKE_COLOR: "red",
+  HIGHLIGHTED_STROKE_COLOR: "white",
   HIGHLIGHTED_STROKE_WIDTH: 2,
   HIGHLIGHTED_CSS_BORDER: "1px dashed #00aeff",
+  HIGHLIGHTED_DASHED: [3, 3],
 
   // cursors
   DEFAULT_CURSOR: "default",
