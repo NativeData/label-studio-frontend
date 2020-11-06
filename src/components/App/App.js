@@ -94,6 +94,7 @@ const App = inject("store")(
                 completion={cs.selected}
                 className={settings.bottomSidePanel ? "" : styles.segment + " ls-segment"}
               >
+                {store.hasInterface("controls") && <Controls item={cs.selected} />}
                 <div style={{ position: "relative" }}>
                   {Tree.renderItem(root)}
                   {this.renderRelations(cs.selected)}
