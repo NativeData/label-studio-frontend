@@ -13,14 +13,49 @@
                     "value": {
                         "height": 10.458911419423693,
                         "rectanglelabels": [
-                            "Moonwalker"
+                            "Planet"
                         ],
                         "rotation": 0,
                         "width": 12.4,
                         "x": 50.8,
                         "y": 5.869797225186766
                     }
+                },
+                {
+                    "from_name": "tag",
+                    "id": "Dx_aB91ISNaa",
+                    "source": "$image",
+                    "to_name": "img",
+                    "type": "rectanglelabels",
+                    "value": {
+                        "height": 10.458911419423693,
+                        "rectanglelabels": [
+                            "Planet"
+                        ],
+                        "rotation": 0,
+                        "width": 12.4,
+                        "x": 69.8,
+                        "y": 5.869797225186766
+                    }
+                },
+                {
+                    "from_name": "tag",
+                    "id": "Dx_aB91ISNazza",
+                    "source": "$image",
+                    "to_name": "img",
+                    "type": "rectanglelabels",
+                    "value": {
+                        "height": 10.458911419423693,
+                        "rectanglelabels": [
+                            "Planet"
+                        ],
+                        "rotation": 0,
+                        "width": 12.4,
+                        "x": 8.8,
+                        "y": 5.869797225186766
+                    }
                 }
+
             ]
         }
     ],

@@ -220,6 +220,12 @@ export default types
           const c = self.completionStore.selected;
           if (c && c.highlightedNode) {
             c.highlightedNode.deleteRegion();
+          } else if (c.multiSelectMode) {
+            const selectedIds = c.multiSelectionStore.regions;
+            selectedIds.map(id => {
+              const region = c.regionStore.regions.find(reg => reg.id === id);
+              region.deleteRegion();
+            });
           }
         },
         "Delete selected region",
