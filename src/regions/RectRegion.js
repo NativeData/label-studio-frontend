@@ -213,10 +213,11 @@ const HtxRectangleView = ({ store, item }) => {
   if (!isAlive(item)) return null;
 
   const style = item.style || item.tag || defaultStyle;
-  let { strokecolor, strokewidth } = style;
+  let { strokecolor, strokewidth, dashed } = style;
   if (item.highlighted) {
     strokecolor = Constants.HIGHLIGHTED_STROKE_COLOR;
     strokewidth = Constants.HIGHLIGHTED_STROKE_WIDTH;
+    dashed = Constants.HIGHLIGHTED_DASHED;
   }
 
   if (item.hidden) return null;
@@ -228,6 +229,8 @@ const HtxRectangleView = ({ store, item }) => {
         y={item.y}
         width={item.width}
         height={item.height}
+        dashEnabled={true}
+        dash={dashed}
         fill={item.fill ? Utils.Colors.convertToRGBA(style.fillcolor, +style.fillopacity) : null}
         stroke={strokecolor}
         strokeWidth={+strokewidth}
@@ -307,9 +310,12 @@ const HtxRectangleView = ({ store, item }) => {
           if (store.completionStore.selected.relationMode) {
             stage.container().style.cursor = Constants.DEFAULT_CURSOR;
           }
-
-          item.setHighlight(false);
-          item.onClickRegion();
+          item.onClickRegion(e.evt.shiftKey);
+          if (e.evt.shiftKey && item.highlighted === false) {
+            item.setHighlight(true);
+          } else {
+            item.setHighlight(false);
+          }
         }}
         draggable={item.editable}
       />

@@ -43,6 +43,9 @@ export default observer(
         const { left, top } = this.container.getBoundingClientRect();
         this.canvasX = left;
         this.canvasY = top;
+
+        item.completion.multiSelectionStore.removeAllRegions();
+        item.completion.regionStore.unhighlightAll();
         return item.event("mousedown", e, x, y);
       }
 

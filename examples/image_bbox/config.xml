@@ -1,7 +1,19 @@
 <View>
-  <Image name="img" value="$image"></Image>
-  <RectangleLabels name="tag" toName="img" fillOpacity="0.5" strokeWidth="5">
+  <Header value="Please select everything you see on the image" />
+
+<View>
+  <Image name="img1" value="$image"></Image>
+  <RectangleLabels name="tag1" toName="img1" fillOpacity="0.5" strokeWidth="5">
     <Label value="Planet"></Label>
     <Label value="Moonwalker" background="blue"></Label>
   </RectangleLabels>
+</View>
+<View>
+  <Image name="img2" value="$image2"></Image>
+  <RectangleLabels name="tag2" toName="img2" fillOpacity="0.5" strokeWidth="5">
+    <Label value="Planet"></Label>
+    <Label value="Moonwalker" background="blue"></Label>
+  </RectangleLabels>
+</View>
+
 </View>
