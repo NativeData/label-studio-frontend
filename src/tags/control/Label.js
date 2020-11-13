@@ -164,8 +164,7 @@ const Model = types
         self.completion.multiSelectionStore.regions.forEach(region_id => {
           self.completion.regionStore.regions.forEach(region => {
             if (region.id === region_id) {
-              const imageId = region.parent.name.match(/\d+$/);
-              const image = self.completion.toNames.get(`img${imageId}`)[0];
+              const image = self.completion.toNames.get(region.parent.name)[0];
               const matchingTagValue = image.children.find(i => i.value == self.value);
               const matchingTag = matchingTagValue.parent;
               matchingTagValue.setSelected(true);
